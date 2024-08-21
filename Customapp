@@ -1,13 +1,19 @@
-
 pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                // Clone the Git repository
+                git 'https://github.com/Madhu123839/Jenkins-Zero-To-Hero'
+            }
+        }
+
         stage('Compile') {
             steps {
                 script {
-                    // Assuming the HelloWorld.java is in the workspace directory
-                    sh 'javac HelloWorld.java'
+                    // Navigate to the src directory and compile the HelloWorld.java file
+                    sh 'javac src/HelloWorld.java'
                 }
             }
         }
@@ -15,8 +21,8 @@ pipeline {
         stage('Run') {
             steps {
                 script {
-                    // Run the compiled Java class
-                    sh 'java HelloWorld'
+                    // Run the compiled HelloWorld class
+                    sh 'java -cp src HelloWorld'
                 }
             }
         }
