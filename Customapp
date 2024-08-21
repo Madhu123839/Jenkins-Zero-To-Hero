@@ -1,1 +1,24 @@
 
+pipeline {
+    agent any
+
+    stages {
+        stage('Compile') {
+            steps {
+                script {
+                    // Assuming the HelloWorld.java is in the workspace directory
+                    sh 'javac HelloWorld.java'
+                }
+            }
+        }
+
+        stage('Run') {
+            steps {
+                script {
+                    // Run the compiled Java class
+                    sh 'java HelloWorld'
+                }
+            }
+        }
+    }
+}
